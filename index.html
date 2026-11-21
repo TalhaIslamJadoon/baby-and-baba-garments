@@ -473,6 +473,111 @@
     .rail-item{box-shadow:0 8px 18px rgba(60,45,20,.10)}
     .qv-overlay{backdrop-filter:none}
   }
+  /* ---------- commerce layer: cart, orders, tracking, reviews (added) ---------- */
+  .rail-stage{touch-action:pan-y;cursor:grab}
+  .rail-stage:active{cursor:grabbing}
+  .badge.soldout{background:#e23b3b;color:#fff}
+  .badge.preorder{background:var(--violet);color:#fff}
+  .prod-actions{display:flex;gap:8px;margin-top:auto}
+  .prod-actions .order-btn{flex:1;margin-top:0}
+  .cart-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--card);color:var(--ink);border:2px solid var(--violet);font-family:"Baloo 2",sans-serif;font-weight:700;border-radius:999px;padding:10px 8px;font-size:.95rem;min-height:46px;cursor:pointer;transition:transform .18s ease,background .18s ease}
+  .cart-btn:hover{transform:translateY(-2px);background:var(--lav-soft)}
+  .order-btn[disabled],.cart-btn[disabled]{opacity:.45;cursor:not-allowed;transform:none!important;animation:none}
+  .nav-cart{position:relative;background:var(--card);border:2px solid var(--violet);color:var(--ink);border-radius:999px;padding:9px 14px;font-family:"Baloo 2",sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;min-height:44px}
+  .nav-cart .cart-count{position:absolute;top:-7px;right:-7px;background:var(--pink-deep);color:#fff;font-size:.72rem;font-weight:800;min-width:22px;height:22px;border-radius:999px;display:grid;place-items:center;padding:0 5px;box-shadow:0 3px 8px rgba(0,0,0,.25)}
+  .shop-tools{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center;margin:0 auto 22px;max-width:760px}
+  .shop-tools input[type="search"]{flex:1 1 220px;padding:12px 16px;border:2px solid var(--line);border-radius:999px;font-family:"Nunito",sans-serif;font-weight:700;font-size:.98rem;background:var(--card);color:var(--ink)}
+  .shop-tools input[type="search"]:focus{outline:none;border-color:var(--cyan)}
+  .shop-tools select{padding:12px 14px;border:2px solid var(--line);border-radius:999px;font-family:"Baloo 2",sans-serif;font-weight:700;background:var(--card);color:var(--ink);min-height:48px}
+  .drawer-overlay{position:fixed;inset:0;z-index:95;background:rgba(24,18,10,.5)}
+  .drawer-overlay[hidden]{display:none}
+  .cart-drawer{position:fixed;top:0;right:0;bottom:0;z-index:96;width:min(400px,92vw);background:var(--card);color:var(--ink);box-shadow:-18px 0 44px rgba(0,0,0,.28);display:flex;flex-direction:column;transform:translateX(105%);transition:transform .32s cubic-bezier(.22,.9,.3,1)}
+  .cart-drawer[hidden]{display:none}
+  .cart-drawer.open{transform:none}
+  @media(max-width:640px){
+    .nav{flex-wrap:wrap;row-gap:6px}
+    .logo{font-size:1.02rem;gap:7px}
+    .logo-badge{width:36px;height:36px;font-size:1.1rem}
+    .nav-links{gap:2px}
+    .nav-links a{padding:8px 9px;font-size:.85rem}
+    .nav-cart{padding:8px 10px;font-size:.9rem}
+    .nav-cart .cart-word{display:none}
+  }
+  .cart-drawer header{position:static;background:var(--card);border-bottom:2px dashed var(--line);padding:16px 18px;display:flex;align-items:center;gap:10px}
+  .cart-drawer header::after{display:none}
+  .cart-drawer h3{font-size:1.25rem;font-weight:800;margin-right:auto}
+  .cart-items{flex:1;overflow-y:auto;padding:14px 18px;display:grid;gap:12px;align-content:start}
+  .cart-item{display:flex;gap:11px;background:var(--bg-soft);border:2px solid var(--line);border-radius:16px;padding:10px}
+  .cart-item img{width:58px;height:58px;border-radius:12px;object-fit:cover;flex:none}
+  .cart-item .ci-body{flex:1;min-width:0}
+  .cart-item .ci-body b{font-family:"Baloo 2",sans-serif;display:block;font-size:.95rem;line-height:1.25}
+  .cart-item .ci-body span{font-size:.8rem;color:var(--ink-soft);font-weight:700;display:block}
+  .qty-row{display:flex;align-items:center;gap:8px;margin-top:6px}
+  .qty-btn{width:32px;height:32px;min-height:32px;border-radius:50%;border:2px solid var(--line);background:var(--card);font-family:"Baloo 2",sans-serif;font-weight:800;cursor:pointer;display:grid;place-items:center;font-size:1rem;line-height:1}
+  .cart-foot{border-top:2px dashed var(--line);padding:16px 18px}
+  .cart-total{display:flex;justify-content:space-between;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px}
+  .cart-foot .btn{width:100%;justify-content:center}
+  .of-overlay{position:fixed;inset:0;z-index:97;background:rgba(24,18,10,.55);display:grid;place-items:center;padding:14px;overflow-y:auto}
+  .of-overlay[hidden]{display:none}
+  .of-card{background:var(--card);color:var(--ink);border-radius:26px;max-width:560px;width:100%;max-height:94vh;overflow-y:auto;padding:26px 24px;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.35);animation:cardIn .4s cubic-bezier(.22,.9,.3,1) both}
+  .of-card h3{font-size:1.45rem;font-weight:800}
+  .of-items{background:var(--bg-soft);border:2px solid var(--line);border-radius:16px;padding:12px 14px;margin:14px 0;display:grid;gap:8px}
+  .of-item{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.94rem}
+  .of-item span{color:var(--ink-soft);font-size:.84rem;display:block;font-weight:700}
+  .of-sum{display:grid;gap:4px;margin:12px 0;font-weight:700}
+  .of-sum div{display:flex;justify-content:space-between}
+  .of-sum .grand{font-family:"Baloo 2",sans-serif;font-size:1.2rem;border-top:2px dashed var(--line);padding-top:8px}
+  .pay-strip{background:var(--mint-soft);border-radius:14px;padding:11px 14px;font-weight:700;font-size:.9rem;margin:12px 0}
+  .of-success{text-align:center;padding:10px 0}
+  .of-success .big{font-size:3rem;display:block}
+  .pre-tag{display:inline-block;background:var(--violet);color:#fff;font-family:"Baloo 2",sans-serif;font-weight:800;font-size:.72rem;padding:3px 10px;border-radius:999px;vertical-align:middle}
+  .track-box{max-width:620px;margin:0 auto;background:var(--card);border:2px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:26px 24px}
+  .track-form{display:flex;gap:9px;flex-wrap:wrap}
+  .track-form input{flex:1 1 200px;padding:12px 15px;border:2px solid var(--line);border-radius:14px;font-family:"Nunito",sans-serif;font-weight:700;background:var(--bg);color:var(--ink)}
+  .track-form input:focus{outline:none;border-color:var(--cyan)}
+  .timeline{display:flex;gap:0;margin:20px 0 6px}
+  .tl-step{flex:1;text-align:center;position:relative;padding-top:22px;font-family:"Baloo 2",sans-serif;font-weight:700;font-size:.8rem;color:var(--ink-soft)}
+  .tl-step::before{content:"";position:absolute;top:5px;left:50%;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:var(--line);border:3px solid var(--card);z-index:2}
+  .tl-step::after{content:"";position:absolute;top:12px;left:-50%;width:100%;height:3px;background:var(--line)}
+  .tl-step:first-child::after{display:none}
+  .tl-step.done{color:var(--mint-deep)}
+  .tl-step.done::before{background:var(--mint-deep)}
+  .tl-step.done::after{background:var(--mint-deep)}
+  .tl-step.now::before{background:var(--sun);box-shadow:0 0 0 5px var(--sun-soft)}
+  .info-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:760px){.info-cards{grid-template-columns:1fr}}
+  .info-card2{background:var(--card);border:2px solid var(--line);border-radius:var(--radius);padding:22px 20px}
+  .info-card2 h3{font-size:1.08rem;font-weight:800;margin-bottom:8px}
+  .info-card2 p{margin:0 0 6px;color:var(--ink-soft);font-weight:600;font-size:.95rem}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:820px){.rev-grid{grid-template-columns:1fr}}
+  .rev-card{background:var(--card);border:2px solid var(--line);border-radius:var(--radius);padding:22px 20px}
+  .rev-card .stars-r{color:var(--sun-deep);font-size:1.05rem;letter-spacing:2px}
+  .rev-card p{color:var(--ink-soft);font-weight:600;margin:8px 0}
+  .rev-card b{font-family:"Baloo 2",sans-serif}
+  .qv-related{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:10px}
+  .qv-rel{border:1.5px solid #e6dcc8;border-radius:14px;padding:6px;background:#fff;cursor:pointer;text-align:left;color:#111}
+  .qv-rel img{border-radius:9px;aspect-ratio:1/1;object-fit:cover;width:100%}
+  .qv-rel b{display:block;font-family:"Baloo 2",sans-serif;font-size:.72rem;line-height:1.2;margin-top:5px;text-transform:uppercase}
+  .qv-rel span{font-size:.74rem;font-weight:800;color:#e7548a}
+  .qv-cart{display:inline-flex;align-items:center;gap:8px;background:#111;color:#fff;border:none;font-family:"Baloo 2",sans-serif;font-weight:700;border-radius:999px;padding:13px 22px;font-size:1rem;min-height:48px;margin:20px 0 0 10px;cursor:pointer;transition:transform .18s ease}
+  .qv-cart:hover{transform:translateY(-2px)}
+  .sg-table{width:100%;border-collapse:collapse;font-size:.92rem;font-weight:600}
+  .sg-table th,.sg-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  .sg-table th{font-family:"Baloo 2",sans-serif;background:var(--bg-soft)}
+  .looks-row{scroll-snap-type:x proximity;overscroll-behavior-x:contain;padding-right:26px}
+  .look-card{scroll-snap-align:center}
+  .tab-badge{background:var(--pink-deep);color:#fff;font-size:.72rem;border-radius:999px;padding:2px 8px;margin-left:5px;font-weight:800}
+  @media(max-width:640px){.admin-item{flex-wrap:wrap}.admin-item .ai-body{flex:1 1 calc(100% - 76px)}}
+  .order-row{align-items:flex-start}
+  .order-row .ai-body b{white-space:normal}
+  .flag-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;align-items:center}
+  .flag-btn{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:.8rem;border-radius:999px;padding:6px 12px;cursor:pointer;min-height:36px;border:2px solid var(--line);background:var(--card);color:var(--ink-soft)}
+  .flag-btn.on-pre{background:var(--violet);color:#fff;border-color:var(--violet)}
+  .flag-btn.on-out{background:#e23b3b;color:#fff;border-color:#e23b3b}
+  .flag-note{padding:7px 10px;border:2px solid var(--line);border-radius:10px;font-family:"Nunito",sans-serif;font-weight:600;font-size:.85rem;background:var(--bg);color:var(--ink);min-width:150px}
+  .to-worn-line{position:relative;z-index:6;margin:12px auto 0;width:max-content;max-width:94%;background:color-mix(in srgb,var(--card) 70%,transparent);border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:800;font-size:.88rem;color:var(--ink-soft);text-align:center}
+  .to-worn-line b{color:var(--ink)}
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
     html{scroll-behavior:auto}
@@ -1353,7 +1458,7 @@
     var n = " " + String(p.name || "").toLowerCase() + " ";
     if (/shoe|sneaker|sandal|boot|chappal/.test(n)) return "shoes";
     if (/blanket|shawl|toy|bib/.test(n)) return "extras";
-    if (/frock|dress|gown/.test(n) || p.cat === "party") return "frucks";
+    if (/frock|dress|gown/.test(n) || p.cat === "party") return "frocks";
     if (/shirt|romper|jacket|kurta|uniform|suit|set|top/.test(n)) return "tops";
     if (/jean|trouser|pant|short|legging|skirt/.test(n)) return "bottoms";
     if (p.cat === "school") return "tops";
@@ -1361,7 +1466,7 @@
   }
   function toStyleOf(p, slot){
     var n = String(p.name || "").toLowerCase();
-    if (slot === "frucks") return (/party/.test(n) || p.cat === "party") ? "party" : "frock";
+    if (slot === "frocks") return (/party/.test(n) || p.cat === "party") ? "party" : "frock";
     if (slot === "tops"){
       if (/jacket/.test(n)) return "jacket";
       if (/romper/.test(n)) return "romper";
@@ -1782,7 +1887,7 @@
   }
 
   /* ----- try-on init ----- */
-  toWorn = {frucks: null, tops: null, bottoms: null, shoes: null, extras: null, babytoddler: null};
+  toWorn = {frocks: null, tops: null, bottoms: null, shoes: null, extras: null, babytoddler: null};
   function toDefault(slot, style){
     var list = state.products.filter(function(p){ return toSlotOf(p) === slot; });
     if (!list.length) return null;
@@ -2227,6 +2332,920 @@
     renderLooks();
   }
   refreshMechanics();
+</script>
+<script>
+/* ================= commerce layer: storage, cart, orders, tracking, reviews ================= */
+var LS_KEY = "babiesWorldStateV1";
+var cart = [];
+var nextOrderSeq = 1001;
+var shopSearch = "", shopSort = "featured";
+if (!state.settings.delivery) state.settings.delivery = {cityFee:200, cityDays:"1–2 days", natFee:350, natDays:"3–5 days"};
+if (state.settings.payJazz == null) state.settings.payJazz = "";
+if (state.settings.payEasy == null) state.settings.payEasy = "";
+if (!state.orders) state.orders = [];
+if (!state.reviews) state.reviews = [
+  {name:"Fatima S.", stars:5, text:"Bought the party frock for my daughter — soft fabric, perfect fit, and it reached us in Abbottabad in two days!"},
+  {name:"Ahmed R.", stars:5, text:"Good quality boys sets at honest prices. WhatsApp par order kiya, size bilkul theek nikla."},
+  {name:"Maryam T.", stars:4, text:"The baby rompers are so soft on newborn skin. We keep coming back for every season."}
+];
+function persistNow(){
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify({products:state.products, offers:state.offers, settings:state.settings, orders:state.orders, reviews:state.reviews, cart:cart, nextId:nextId, nextOrderSeq:nextOrderSeq}));
+  } catch(e){}
+}
+(function loadPersisted(){
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (!raw) return;
+    var d = JSON.parse(raw);
+    if (d.products && d.products.length) state.products = d.products;
+    if (d.offers) state.offers = d.offers;
+    if (d.settings) state.settings = d.settings;
+    if (!state.settings.delivery) state.settings.delivery = {cityFee:200, cityDays:"1–2 days", natFee:350, natDays:"3–5 days"};
+    if (state.settings.payJazz == null) state.settings.payJazz = "";
+    if (state.settings.payEasy == null) state.settings.payEasy = "";
+    state.orders = d.orders || [];
+    if (d.reviews && d.reviews.length) state.reviews = d.reviews;
+    cart = d.cart || [];
+    if (d.nextId) nextId = d.nextId;
+    if (d.nextOrderSeq) nextOrderSeq = d.nextOrderSeq;
+  } catch(e){}
+})();
+var lastSnap = "";
+setInterval(function(){
+  var snap;
+  try { snap = JSON.stringify({p:state.products,o:state.offers,s:state.settings,od:state.orders,rv:state.reviews,c:cart,n:nextId,q:nextOrderSeq}); } catch(e){ return; }
+  if (snap !== lastSnap) { lastSnap = snap; persistNow(); }
+}, 700);
+
+/* ---------- cart ---------- */
+function cartCount(){ return cart.reduce(function(s,i){ return s + i.qty; }, 0); }
+function cartTotal(){ return cart.reduce(function(s,i){ return s + i.qty * i.price; }, 0); }
+function variantOf(size, colour){ var v = []; if (size) v.push(size); if (colour) v.push(colour); return v.join(" · "); }
+function addToCart(p, size, colour, qty){
+  if (!p || p.soldout) return;
+  var variant = variantOf(size, colour);
+  var found = null;
+  cart.forEach(function(i){ if (i.pid === p.id && i.variant === variant) found = i; });
+  if (found) found.qty += (qty || 1);
+  else cart.push({pid:p.id, name:p.name, img:p.img, price:p.price, variant:variant, qty:(qty || 1), preorder:!!p.preorder});
+  persistNow(); renderCart(); pulseCartBtn();
+}
+function pulseCartBtn(){
+  var b = document.getElementById("cartBtn");
+  if (b) { b.style.transform = "scale(1.12)"; setTimeout(function(){ b.style.transform = ""; }, 180); }
+  updateCartBadge();
+}
+function updateCartBadge(){
+  var el = document.getElementById("cartCount");
+  if (el) { el.textContent = cartCount(); el.style.display = cartCount() ? "grid" : "none"; }
+}
+function renderCart(){
+  updateCartBadge();
+  var box = document.getElementById("cartItems");
+  if (!box) return;
+  box.innerHTML = "";
+  if (!cart.length) {
+    box.innerHTML = '<p class="empty-note">Your cart is empty — add something cute! 🧸</p>';
+  }
+  cart.forEach(function(item, idx){
+    var row = document.createElement("div");
+    row.className = "cart-item";
+    row.innerHTML = '<img src="' + esc(item.img) + '" alt="" /><div class="ci-body"><b>' + esc(item.name) + (item.preorder ? ' <span class="pre-tag">PRE-ORDER</span>' : '') + '</b>' +
+      (item.variant ? '<span>' + esc(item.variant) + '</span>' : '') +
+      '<span>' + fmtPrice(item.price) + ' each</span>' +
+      '<div class="qty-row"><button type="button" class="qty-btn" data-dec="' + idx + '" aria-label="One less">−</button><b>× ' + item.qty + '</b><button type="button" class="qty-btn" data-inc="' + idx + '" aria-label="One more">+</button>' +
+      '<button type="button" class="mini-btn danger" data-rem="' + idx + '" style="margin-left:auto">Remove</button></div></div>' +
+      '<b style="font-family:\'Baloo 2\',sans-serif">' + fmtPrice(item.price * item.qty) + '</b>';
+    box.appendChild(row);
+  });
+  document.getElementById("cartGrandTotal").textContent = fmtPrice(cartTotal());
+  box.querySelectorAll("[data-inc]").forEach(function(b){ b.addEventListener("click", function(){ cart[+b.getAttribute("data-inc")].qty++; persistNow(); renderCart(); }); });
+  box.querySelectorAll("[data-dec]").forEach(function(b){ b.addEventListener("click", function(){ var i = +b.getAttribute("data-dec"); cart[i].qty--; if (cart[i].qty < 1) cart.splice(i,1); persistNow(); renderCart(); }); });
+  box.querySelectorAll("[data-rem]").forEach(function(b){ b.addEventListener("click", function(){ cart.splice(+b.getAttribute("data-rem"),1); persistNow(); renderCart(); }); });
+}
+function openCart(){ renderCart(); var d = document.getElementById("cartDrawer"); d.hidden = false; requestAnimationFrame(function(){ requestAnimationFrame(function(){ d.classList.add("open"); }); }); document.getElementById("drawerOverlay").hidden = false; }
+function closeCart(){ var d = document.getElementById("cartDrawer"); d.classList.remove("open"); document.getElementById("drawerOverlay").hidden = true; setTimeout(function(){ if (!d.classList.contains("open")) d.hidden = true; }, 340); }
+
+/* cart button + drawer (built once) */
+(function buildCartUI(){
+  var nav = document.querySelector(".nav-links");
+  var btn = document.createElement("button");
+  btn.type = "button"; btn.className = "nav-cart"; btn.id = "cartBtn";
+  btn.setAttribute("aria-label", "Open cart");
+  btn.innerHTML = '🛒 <span class="cart-word">Cart</span> <span class="cart-count" id="cartCount" style="display:none">0</span>';
+  btn.addEventListener("click", openCart);
+  var adminLink = nav.querySelector(".nav-admin");
+  nav.insertBefore(btn, adminLink || null);
+  var ov = document.createElement("div");
+  ov.className = "drawer-overlay"; ov.id = "drawerOverlay"; ov.hidden = true;
+  ov.addEventListener("click", closeCart);
+  document.body.appendChild(ov);
+  var dr = document.createElement("aside");
+  dr.className = "cart-drawer"; dr.id = "cartDrawer"; dr.hidden = true;
+  dr.setAttribute("aria-label", "Shopping cart");
+  dr.innerHTML = '<header><h3>🛒 Your Cart</h3><button type="button" class="qty-btn" id="cartClose" aria-label="Close cart">✕</button></header>' +
+    '<div class="cart-items" id="cartItems"></div>' +
+    '<div class="cart-foot"><div class="cart-total"><span>Total</span><span id="cartGrandTotal">Rs 0</span></div>' +
+    '<button type="button" class="btn btn-grad" id="cartCheckout">✅ Checkout — Place Order</button></div>';
+  document.body.appendChild(dr);
+  dr.querySelector("#cartClose").addEventListener("click", closeCart);
+  dr.querySelector("#cartCheckout").addEventListener("click", function(){
+    if (!cart.length) return;
+    closeCart();
+    openOrderForm({mode:"cart", items:cart.map(function(i){ return {pid:i.pid, name:i.name, price:i.price, variant:i.variant, qty:i.qty, preorder:i.preorder}; })});
+  });
+})();
+
+/* ---------- size tokens / colours for forms ---------- */
+function sizeTokens(p){
+  var raw = String(p.sizes || "").split(/[,/]/).map(function(s){ return s.trim(); }).filter(Boolean);
+  return raw.length ? raw : ["Standard size"];
+}
+
+/* ---------- order form ---------- */
+var ofCtx = null;
+(function buildOrderForm(){
+  var ov = document.createElement("div");
+  ov.className = "of-overlay"; ov.id = "ofOverlay"; ov.hidden = true;
+  ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-label", "Place your order");
+  ov.innerHTML = '<div class="of-card"><button type="button" class="qv-close" id="ofClose" aria-label="Close order form">✕</button><div id="ofBody"></div></div>';
+  document.body.appendChild(ov);
+  ov.addEventListener("click", function(e){ if (e.target === ov) closeOrderForm(); });
+  ov.querySelector("#ofClose").addEventListener("click", closeOrderForm);
+})();
+function closeOrderForm(){ document.getElementById("ofOverlay").hidden = true; ofCtx = null; }
+function deliveryFee(){ return ofCtx && ofCtx.area === "nationwide" ? +state.settings.delivery.natFee : +state.settings.delivery.cityFee; }
+function ofItemsTotal(){ return ofCtx.items.reduce(function(s,i){ return s + i.price * i.qty; }, 0); }
+function openOrderForm(ctx){
+  ofCtx = {mode:ctx.mode, items:ctx.items || null, product:ctx.product || null, area:"city", size:ctx.size || null, colour:ctx.colour || null, qty:ctx.qty || 1};
+  if (ctx.mode === "single") {
+    var p = ctx.product;
+    ofCtx.items = [{pid:p.id, name:p.name, price:p.price, variant:"", qty:ofCtx.qty, preorder:!!p.preorder}];
+  }
+  renderOrderForm();
+  document.getElementById("ofOverlay").hidden = false;
+}
+function renderOrderForm(){
+  var body = document.getElementById("ofBody");
+  var p = ofCtx.product;
+  var d = state.settings.delivery;
+  var html = '<h3>📝 Place your order</h3><p style="color:var(--ink-soft);font-weight:600;margin:6px 0 0">Fill this in — your order is saved and also sent to the shop on WhatsApp.</p>';
+  html += '<div class="of-items">';
+  if (ofCtx.mode === "single" && p) {
+    html += '<div class="of-item"><div><b>' + esc(p.name) + '</b>' + (p.preorder ? ' <span class="pre-tag">PRE-ORDER</span>' : '') + '<span>' + fmtPrice(p.price) + ' each</span></div><b id="ofLineTotal">' + fmtPrice(p.price * ofCtx.qty) + '</b></div>';
+  } else {
+    ofCtx.items.forEach(function(i){
+      html += '<div class="of-item"><div><b>' + esc(i.name) + '</b>' + (i.preorder ? ' <span class="pre-tag">PRE-ORDER</span>' : '') + (i.variant ? '<span>' + esc(i.variant) + '</span>' : '') + '<span>× ' + i.qty + ' · ' + fmtPrice(i.price) + ' each</span></div><b>' + fmtPrice(i.price * i.qty) + '</b></div>';
+    });
+  }
+  html += '</div>';
+  html += '<div class="form-grid">';
+  if (ofCtx.mode === "single" && p) {
+    html += '<div class="field"><label for="ofSize">Size</label><select id="ofSize">' + sizeTokens(p).map(function(s){ return '<option' + (ofCtx.size === s ? ' selected' : '') + '>' + esc(s) + '</option>'; }).join("") + '</select></div>';
+    var cols = toProductColors(p).map(function(c){ return c.n; });
+    html += '<div class="field"><label for="ofColour">Colour</label><select id="ofColour">' + cols.map(function(c){ return '<option' + (ofCtx.colour === c ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join("") + '</select></div>';
+    html += '<div class="field"><label for="ofQty">Quantity</label><input id="ofQty" type="number" min="1" max="20" value="' + ofCtx.qty + '" /></div>';
+    html += '<div class="field"><label>Size help</label><button type="button" class="mini-btn" id="ofSizeGuide">📏 Open size guide</button></div>';
+  }
+  html += '<div class="field"><label for="ofName">Your name *</label><input id="ofName" type="text" placeholder="e.g. Fatima Khan" /></div>';
+  html += '<div class="field"><label for="ofPhone">Mobile number *</label><input id="ofPhone" type="tel" placeholder="e.g. 0300 1234567" /></div>';
+  html += '<div class="field full"><label for="ofAddress">Full address &amp; city *</label><textarea id="ofAddress" rows="2" placeholder="House, street, area, city"></textarea></div>';
+  html += '<div class="field"><label for="ofArea">Delivery area</label><select id="ofArea"><option value="city">Abbottabad city — ' + fmtPrice(d.cityFee) + ' · ' + esc(d.cityDays) + '</option><option value="nationwide">Nationwide — ' + fmtPrice(d.natFee) + ' · ' + esc(d.natDays) + '</option></select></div>';
+  html += '<div class="field"><label for="ofPay">Payment method</label><select id="ofPay"><option value="Cash on Delivery">Cash on Delivery</option><option value="JazzCash">JazzCash</option><option value="Easypaisa">Easypaisa</option></select></div>';
+  html += '<div class="field full"><label for="ofNote">Note (optional)</label><input id="ofNote" type="text" placeholder="Anything we should know?" /></div>';
+  html += '</div>';
+  html += '<div class="pay-strip" id="ofPayStrip"></div>';
+  html += '<div class="of-sum"><div><span>Subtotal</span><span id="ofSub">' + fmtPrice(ofItemsTotal()) + '</span></div>' +
+    '<div><span>Delivery</span><span id="ofDel">' + fmtPrice(deliveryFee()) + '</span></div>' +
+    '<div class="grand"><span>Total</span><span id="ofGrand">' + fmtPrice(ofItemsTotal() + deliveryFee()) + '</span></div></div>';
+  html += '<p class="err" id="ofErr" hidden>Please add your name, a mobile number and your address.</p>';
+  html += '<div class="form-actions"><button type="button" class="btn btn-grad" id="ofSubmit">✅ Place Order</button><button type="button" class="btn btn-ghost" id="ofCancel">Cancel</button></div>';
+  body.innerHTML = html;
+  function refreshSums(){
+    document.getElementById("ofSub").textContent = fmtPrice(ofItemsTotal());
+    document.getElementById("ofDel").textContent = fmtPrice(deliveryFee());
+    document.getElementById("ofGrand").textContent = fmtPrice(ofItemsTotal() + deliveryFee());
+  }
+  function refreshPayStrip(){
+    var pay = document.getElementById("ofPay").value;
+    var strip = "💳 We accept: Cash on Delivery · JazzCash · Easypaisa.";
+    if (pay === "JazzCash" && state.settings.payJazz) strip += " JazzCash account: " + state.settings.payJazz + " — send payment and share the screenshot on WhatsApp.";
+    if (pay === "Easypaisa" && state.settings.payEasy) strip += " Easypaisa account: " + state.settings.payEasy + " — send payment and share the screenshot on WhatsApp.";
+    if (pay === "Cash on Delivery") strip += " Pay in cash when your order arrives.";
+    document.getElementById("ofPayStrip").textContent = strip;
+  }
+  document.getElementById("ofArea").addEventListener("change", function(){ ofCtx.area = this.value; refreshSums(); });
+  document.getElementById("ofPay").addEventListener("change", refreshPayStrip);
+  refreshPayStrip();
+  if (ofCtx.mode === "single" && p) {
+    document.getElementById("ofSizeGuide").addEventListener("click", openSizeGuide);
+    document.getElementById("ofQty").addEventListener("change", function(){
+      var q = Math.max(1, Math.min(20, parseInt(this.value, 10) || 1));
+      this.value = q;
+      ofCtx.qty = q; ofCtx.items[0].qty = q;
+      var lt = document.getElementById("ofLineTotal");
+      if (lt) lt.textContent = fmtPrice(ofCtx.items[0].price * q);
+      refreshSums();
+    });
+    document.getElementById("ofSize").addEventListener("change", function(){ ofCtx.size = this.value; syncSingleVariant(); });
+    document.getElementById("ofColour").addEventListener("change", function(){ ofCtx.colour = this.value; syncSingleVariant(); });
+    function syncSingleVariant(){
+      var sz = document.getElementById("ofSize").value, cl = document.getElementById("ofColour").value;
+      ofCtx.items[0].variant = variantOf(sz, cl);
+    }
+    syncSingleVariant();
+  }
+  document.getElementById("ofCancel").addEventListener("click", closeOrderForm);
+  document.getElementById("ofSubmit").addEventListener("click", submitOrder);
+}
+function submitOrder(){
+  var name = document.getElementById("ofName").value.trim();
+  var phone = document.getElementById("ofPhone").value.trim();
+  var address = document.getElementById("ofAddress").value.trim();
+  if (!name || phone.replace(/\D/g, "").length < 10 || !address) { document.getElementById("ofErr").hidden = false; return; }
+  var sub = ofItemsTotal(), del = deliveryFee();
+  var order = {
+    seq: nextOrderSeq, id: "#" + nextOrderSeq,
+    date: new Date().toISOString(),
+    customer: name, phone: phone, address: address,
+    area: ofCtx.area === "nationwide" ? "Nationwide" : "Abbottabad city",
+    payment: document.getElementById("ofPay").value,
+    note: document.getElementById("ofNote").value.trim(),
+    items: ofCtx.items.map(function(i){ return {pid:i.pid, name:i.name, variant:i.variant || "", qty:i.qty, price:i.price, preorder:!!i.preorder}; }),
+    subtotal: sub, delivery: del, total: sub + del,
+    preorder: ofCtx.items.some(function(i){ return i.preorder; }),
+    status: "New"
+  };
+  nextOrderSeq++;
+  state.orders.unshift(order);
+  persistNow();
+  if (typeof updateOrdersBadge === "function") updateOrdersBadge();
+  if (ofCtx.mode === "cart") { cart = []; persistNow(); renderCart(); }
+  var lines = order.items.map(function(i){ return "• " + i.name + (i.variant ? " (" + i.variant + ")" : "") + " × " + i.qty + " — " + fmtPrice(i.price * i.qty) + (i.preorder ? " [PRE-ORDER]" : ""); }).join("\n");
+  var msg = "Assalam-o-Alaikum! New order *" + order.id + "* from " + state.settings.name + (order.preorder ? " *(PRE-ORDER)*" : "") + ":\n" + lines +
+    "\nSubtotal: " + fmtPrice(order.subtotal) + "\nDelivery (" + order.area + "): " + fmtPrice(order.delivery) + "\n*Total: " + fmtPrice(order.total) + "*" +
+    "\nPayment: " + order.payment + "\nName: " + order.customer + "\nPhone: " + order.phone + "\nAddress: " + order.address + (order.note ? "\nNote: " + order.note : "");
+  var waHref = "https://wa.me/" + waNum() + "?text=" + encodeURIComponent(msg);
+  var body = document.getElementById("ofBody");
+  body.innerHTML = '<div class="of-success"><span class="big">🎉</span><h3>Order placed!</h3>' +
+    '<p style="font-weight:700;font-size:1.1rem">Your Order ID is <b>' + order.id + '</b>' + (order.preorder ? ' <span class="pre-tag">PRE-ORDER</span>' : '') + '</p>' +
+    '<p style="color:var(--ink-soft);font-weight:600">Total: <b>' + fmtPrice(order.total) + '</b> · ' + esc(order.payment) + '<br/>One last step — send the same order to the shop on WhatsApp so we can confirm it right away:</p>' +
+    '<div class="form-actions" style="justify-content:center"><a class="btn btn-wa" target="_blank" rel="noopener" href="' + waHref + '">💬 Send order on WhatsApp</a></div>' +
+    '<div class="form-actions" style="justify-content:center"><button type="button" class="btn btn-ghost" id="ofTrack">📦 Track my order</button><button type="button" class="btn btn-ghost" id="ofDone">Continue shopping</button></div></div>';
+  document.getElementById("ofDone").addEventListener("click", closeOrderForm);
+  document.getElementById("ofTrack").addEventListener("click", function(){
+    closeOrderForm();
+    var inp = document.getElementById("trackInput");
+    if (inp) { inp.value = order.id; document.getElementById("track").scrollIntoView({behavior: reduced ? "auto" : "smooth"}); runTrack(); }
+  });
+}
+
+/* ---------- size guide ---------- */
+(function buildSizeGuide(){
+  var ov = document.createElement("div");
+  ov.className = "of-overlay"; ov.id = "sgOverlay"; ov.hidden = true;
+  ov.setAttribute("role", "dialog"); ov.setAttribute("aria-modal", "true"); ov.setAttribute("aria-label", "Kids size guide");
+  var rows = [["0–3 months","16″","10″"],["3–6 months","17″","11″"],["6–12 months","18″","12″"],["1–2 years","20″","14″"],["2–3 years","21″","15″"],["3–4 years","22″","16″"],["4–5 years","23″","17″"],["5–6 years","24″","18″"],["6–7 years","25″","19″"],["7–8 years","26″","20″"],["9–10 years","28″","22″"],["11–12 years","30″","24″"]];
+  ov.innerHTML = '<div class="of-card"><button type="button" class="qv-close" id="sgClose" aria-label="Close size guide">✕</button>' +
+    '<h3>📏 Kids Size Guide</h3><p style="color:var(--ink-soft);font-weight:600;margin:6px 0 14px">Ages 0–12 — chest and top length in inches. Between sizes? Pick the bigger one, little stars grow fast! 🌟</p>' +
+    '<table class="sg-table"><thead><tr><th>Age / Size</th><th>Chest</th><th>Length</th></tr></thead><tbody>' +
+    rows.map(function(r){ return "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td><td>" + r[2] + "</td></tr>"; }).join("") +
+    '</tbody></table><p style="color:var(--ink-soft);font-weight:600;margin-top:12px">Not sure? Message us on WhatsApp with your child\'s age and we\'ll pick the perfect fit.</p></div>';
+  document.body.appendChild(ov);
+  ov.addEventListener("click", function(e){ if (e.target === ov) ov.hidden = true; });
+  ov.querySelector("#sgClose").addEventListener("click", function(){ ov.hidden = true; });
+})();
+function openSizeGuide(){ document.getElementById("sgOverlay").hidden = false; }
+
+/* ---------- shop grid: search + sort + cart/order buttons + badges ---------- */
+var origRenderProducts = renderProducts;
+renderProducts = function(){
+  var gridEl = document.getElementById("prodGrid");
+  gridEl.innerHTML = "";
+  var q = shopSearch.trim().toLowerCase();
+  var list = state.products.filter(function(p){ return currentFilter === "all" || p.cat === currentFilter; });
+  if (q) list = list.filter(function(p){ return (p.name + " " + (CATS[p.cat] ? CATS[p.cat].label : p.cat)).toLowerCase().indexOf(q) > -1; });
+  if (shopSort === "price-asc") list = list.slice().sort(function(a,b){ return a.price - b.price; });
+  if (shopSort === "price-desc") list = list.slice().sort(function(a,b){ return b.price - a.price; });
+  if (shopSort === "name") list = list.slice().sort(function(a,b){ return a.name.localeCompare(b.name); });
+  if (!list.length) {
+    var empty = document.createElement("p");
+    empty.className = "empty-note";
+    empty.textContent = q ? "No items match your search — try another name, or ask us on WhatsApp! 💬" : "No items in this category yet — ask us on WhatsApp, we have lots more in the shop! 💬";
+    gridEl.appendChild(empty);
+    refreshTryOn();
+    return;
+  }
+  list.forEach(function(p, i){
+    var card = document.createElement("article");
+    card.className = "prod";
+    card.style.setProperty("--n", i);
+    var meta = (CATS[p.cat] ? CATS[p.cat].label : p.cat) + (p.sizes ? " · " + p.sizes : "");
+    var meta2 = p.colours ? "Colours: " + p.colours : "";
+    if (p.fabric) meta2 = (meta2 ? meta2 + " · " : "") + "Fabric: " + p.fabric;
+    var badge = p.soldout ? '<span class="badge soldout">Sold Out</span>' : p.preorder ? '<span class="badge preorder">Pre-Order</span>' : (p.badge ? '<span class="badge">' + esc(p.badge) + '</span>' : '<span class="badge demo">Demo</span>');
+    card.innerHTML =
+      '<div class="ph"><img loading="lazy" decoding="async" src="' + esc(p.img) + '" alt="' + esc(p.alt || p.name) + '" />' + badge + '</div>' +
+      '<div class="body"><h3>' + esc(p.name) + '</h3><div class="meta">' + esc(meta) + '</div>' +
+      (meta2 ? '<div class="meta2">' + esc(meta2) + '</div>' : '') +
+      (p.preorder && p.preNote ? '<div class="meta2">⏳ ' + esc(p.preNote) + '</div>' : '') +
+      '<div class="price">' + fmtPrice(p.price) + ' <small>· demo price</small></div>' +
+      '<div class="prod-actions">' +
+      '<button type="button" class="order-btn" data-order="' + p.id + '"' + (p.soldout ? ' disabled' : '') + '>' + (p.soldout ? 'Sold Out' : '📝 Order Now') + '</button>' +
+      '<button type="button" class="cart-btn" data-cart="' + p.id + '"' + (p.soldout ? ' disabled' : '') + '>🛒 Add to Cart</button></div></div>';
+    gridEl.appendChild(card);
+  });
+  gridEl.querySelectorAll("[data-order]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var p = toProd(+b.getAttribute("data-order"));
+      if (p && !p.soldout) openOrderForm({mode:"single", product:p, size:sizeTokens(p)[0], colour:(toProductColors(p)[0] || {}).n || ""});
+    });
+  });
+  gridEl.querySelectorAll("[data-cart]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var p = toProd(+b.getAttribute("data-cart"));
+      if (p && !p.soldout) addToCart(p, sizeTokens(p)[0], (toProductColors(p)[0] || {}).n || "", 1);
+    });
+  });
+  refreshTryOn();
+};
+(function buildShopTools(){
+  var filters = document.querySelector("#shop .filters");
+  if (!filters) return;
+  var tools = document.createElement("div");
+  tools.className = "shop-tools reveal in";
+  tools.innerHTML = '<input type="search" id="shopSearch" placeholder="🔍 Search clothes… (try “frock”)" aria-label="Search products" />' +
+    '<select id="shopSort" aria-label="Sort products"><option value="featured">Sort: Featured</option><option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option><option value="name">Name: A–Z</option></select>' +
+    '<button type="button" class="mini-btn" id="shopSizeGuide" style="min-height:48px;border-radius:999px;padding:10px 18px">📏 Size Guide</button>';
+  filters.parentNode.insertBefore(tools, filters);
+  tools.querySelector("#shopSearch").addEventListener("input", function(){ shopSearch = this.value; renderProducts(); });
+  tools.querySelector("#shopSort").addEventListener("change", function(){ shopSort = this.value; renderProducts(); });
+  tools.querySelector("#shopSizeGuide").addEventListener("click", openSizeGuide);
+})();
+
+/* ---------- quick view: order form, add to cart, size guide, related ---------- */
+var origRenderQV = renderQV;
+renderQV = function(){
+  origRenderQV();
+  if (!qvP) return;
+  var wa = document.getElementById("qvWa");
+  wa.textContent = qvP.soldout ? "Sold Out" : "📝 Order Now";
+  var rel = document.getElementById("qvRelated");
+  if (rel) {
+    var rels = state.products.filter(function(x){ return x.cat === qvP.cat && x.id !== qvP.id; }).slice(0, 4);
+    rel.innerHTML = rels.length ? rels.map(function(x){
+      return '<button type="button" class="qv-rel" data-rel="' + x.id + '"><img loading="lazy" decoding="async" src="' + esc(x.img) + '" alt="" /><b>' + esc(x.name) + '</b><span>' + fmtPrice(x.price) + '</span></button>';
+    }).join("") : '<p style="color:#8a8071;font-weight:700;font-size:.85rem;grid-column:1/-1">No other items in this category yet.</p>';
+    rel.querySelectorAll("[data-rel]").forEach(function(b){
+      b.addEventListener("click", function(){ openQuickView(+b.getAttribute("data-rel")); });
+    });
+  }
+};
+(function buildQVExtras(){
+  var body = document.querySelector(".qv-body");
+  var wa = document.getElementById("qvWa");
+  var cartBtn = document.createElement("button");
+  cartBtn.type = "button"; cartBtn.className = "qv-cart"; cartBtn.id = "qvCartBtn"; cartBtn.textContent = "🛒 Add to Cart";
+  wa.parentNode.insertBefore(cartBtn, wa.nextSibling);
+  cartBtn.addEventListener("click", function(){
+    if (!qvP || qvP.soldout) return;
+    var ageLabel = "—";
+    AGE_GROUPS.forEach(function(g){ if (g.key === qvAge) ageLabel = g.label + " years"; });
+    addToCart(qvP, ageLabel, qvColour || "", 1);
+    closeQuickView(); openCart();
+  });
+  var sg = document.createElement("button");
+  sg.type = "button"; sg.className = "linklike"; sg.textContent = "📏 Size guide";
+  sg.style.marginLeft = "12px";
+  sg.addEventListener("click", openSizeGuide);
+  wa.parentNode.insertBefore(sg, cartBtn.nextSibling);
+  var relTitle = document.createElement("div");
+  relTitle.className = "mech-label"; relTitle.style.marginTop = "22px"; relTitle.textContent = "You may also like";
+  var rel = document.createElement("div");
+  rel.className = "qv-related"; rel.id = "qvRelated";
+  body.appendChild(relTitle); body.appendChild(rel);
+  wa.addEventListener("click", function(e){
+    e.preventDefault();
+    if (!qvP || qvP.soldout) return;
+    var ageLabel = "—";
+    AGE_GROUPS.forEach(function(g){ if (g.key === qvAge) ageLabel = g.label + " years"; });
+    var prod = qvP, sz = ageLabel, cl = qvColour || "";
+    closeQuickView();
+    openOrderForm({mode:"single", product:prod, size:sz, colour:cl});
+  });
+})();
+
+/* try-on "Order this" + looks "Order Full Look" now go through cart / order form */
+document.getElementById("toBar").addEventListener("click", function(e){
+  var a = e.target.closest ? e.target.closest(".to-order") : null;
+  if (!a) return;
+  e.preventDefault(); e.stopPropagation();
+  var p = toProd(toWorn[toTab]);
+  if (!p || p.soldout) return;
+  var colName = "";
+  var opts = colourOptions(p).filter(function(o){ return o.ok; });
+  opts.forEach(function(o){ if (o.h === toColor[toTab]) colName = o.n; });
+  if (!colName && opts.length) colName = opts[0].n;
+  openOrderForm({mode:"single", product:p, size:sizeTokens(p)[0], colour:colName});
+}, true);
+document.getElementById("lookDetail").addEventListener("click", function(e){
+  var a = e.target.closest ? e.target.closest("#orderLookBtn") : null;
+  if (!a) return;
+  e.preventDefault(); e.stopPropagation();
+  var looks = buildLooks();
+  var look = looks[openLookIdx % looks.length];
+  if (!look) return;
+  look.pieces.forEach(function(p){ addToCart(p, sizeTokens(p)[0], (toProductColors(p)[0] || {}).n || "", lookQty[p.id] || 1); });
+  openCart();
+}, true);
+
+/* re-render with persisted state */
+renderOffers();
+applySettings();
+refreshTryOn();
+refreshMechanics();
+renderCart();
+</script>
+<script>
+/* ================= Part 1: rail auto-drift + drag ================= */
+var railOffset = 0, railHoldUntil = 0, railDrag = null, railDragMoved = false, railLastTs = 0;
+function railBezier(t){
+  var x = (1-t)*(1-t)*(-10) + 2*(1-t)*t*500 + t*t*1010;
+  var y = (1-t)*(1-t)*20 + 2*(1-t)*t*130 + t*t*20;
+  return {x: x/1000*100, y: y/190*100};
+}
+function railFrame(ts){
+  requestAnimationFrame(railFrame);
+  if (!railLastTs) railLastTs = ts;
+  var dt = Math.min(60, ts - railLastTs); railLastTs = ts;
+  var items = railStage.querySelectorAll(".rail-item");
+  if (!items.length) return;
+  var r = railStage.getBoundingClientRect();
+  if (r.bottom < -60 || r.top > window.innerHeight + 60) return;
+  if (!railDrag && ts > railHoldUntil) railOffset += dt / 1000 * 0.024; /* one full lap ≈ 38s */
+  var W = railStage.clientWidth, H = railStage.clientHeight;
+  if (!W) return;
+  var n = items.length;
+  items.forEach(function(el, i){
+    var baseT = n === 1 ? 0.5 : 0.08 + (i * 0.84 / (n - 1));
+    var span = 0.92;
+    var tt = 0.04 + (((baseT - 0.04 + railOffset) % span) + span) % span;
+    var pt = railBezier(tt);
+    var cardW = el.offsetWidth || 120;
+    var x = pt.x / 100 * W;
+    var half = cardW / 2;
+    if (x < half + 2) x = half + 2;
+    if (x > W - half - 2) x = W - half - 2;
+    el.style.left = x + "px";
+    el.style.top = "calc(" + pt.y + "% + 14px)";
+  });
+}
+if (!reduced) requestAnimationFrame(railFrame);
+railStage.addEventListener("pointerdown", function(e){
+  railDrag = {x: e.clientX, off: railOffset, id: e.pointerId};
+  railDragMoved = false;
+  railHoldUntil = Infinity;
+});
+window.addEventListener("pointermove", function(e){
+  if (!railDrag) return;
+  var dx = e.clientX - railDrag.x;
+  if (Math.abs(dx) > 9) railDragMoved = true;
+  if (railDragMoved) {
+    var W = railStage.clientWidth || 1;
+    railOffset = railDrag.off + dx / W * 0.92;
+  }
+});
+window.addEventListener("pointerup", function(){
+  if (railDrag) { railDrag = null; railHoldUntil = performance.now() + 3000; }
+  if (railDragMoved) setTimeout(function(){ railDragMoved = false; }, 400);
+});
+railStage.addEventListener("pointercancel", function(){ railDrag = null; railHoldUntil = performance.now() + 3000; });
+railStage.addEventListener("focusin", function(){ railHoldUntil = performance.now() + 3000; });
+railStage.addEventListener("click", function(e){
+  if (railDragMoved) { e.stopPropagation(); e.preventDefault(); railDragMoved = false; }
+}, true);
+
+/* ================= Part 5: Try the Look — FLIP shuffle + tap highlight ================= */
+var looksRowEl = document.getElementById("looksRow");
+document.querySelector("#looks .looks-head").addEventListener("click", function(e){
+  if (!e.target.closest || !e.target.closest("#shuffleBtn")) return;
+  e.preventDefault(); e.stopPropagation();
+  var cards = Array.prototype.slice.call(looksRowEl.querySelectorAll(".look-card"));
+  if (cards.length < 2) return;
+  var firstRect = {}, firstScale = {};
+  cards.forEach(function(c, idx){
+    firstRect[idx] = c.getBoundingClientRect();
+    firstScale[idx] = c.classList.contains("is-centre") ? 1.13 : c.classList.contains("is-edge") ? 0.92 : 1;
+    c.setAttribute("data-flip-idx", idx);
+  });
+  for (var i = cards.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = cards[i]; cards[i] = cards[j]; cards[j] = tmp;
+  }
+  cards.forEach(function(c){ looksRowEl.appendChild(c); });
+  var mid = Math.floor(cards.length / 2);
+  cards.forEach(function(c, pos){
+    var dist = Math.abs(pos - mid);
+    c.classList.remove("is-centre", "is-near", "is-edge");
+    c.classList.add(dist === 0 ? "is-centre" : dist === 1 ? "is-near" : "is-edge");
+  });
+  if (!reduced) {
+    cards.forEach(function(c){
+      var f = firstRect[c.getAttribute("data-flip-idx")];
+      var fsc = firstScale[c.getAttribute("data-flip-idx")];
+      if (!f) return;
+      var last = c.getBoundingClientRect();
+      var dx = f.left - last.left, dy = f.top - last.top;
+      var newSc = c.classList.contains("is-centre") ? 1.13 : c.classList.contains("is-edge") ? 0.92 : 1;
+      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+        c.animate([
+          {transform: "translate(" + dx + "px," + dy + "px) scale(" + fsc + ")"},
+          {transform: "translate(0px,0px) scale(" + newSc + ")"}
+        ], {duration: 560, easing: "cubic-bezier(.22,.9,.3,1)"});
+      }
+    });
+  }
+  var centre = looksRowEl.querySelector(".look-card.is-centre");
+  if (centre) centre.scrollIntoView({inline: "center", block: "nearest", behavior: reduced ? "auto" : "smooth"});
+}, true);
+looksRowEl.addEventListener("click", function(e){
+  var card = e.target.closest ? e.target.closest(".look-card") : null;
+  if (!card) return;
+  var cards = Array.prototype.slice.call(looksRowEl.querySelectorAll(".look-card"));
+  var pos = cards.indexOf(card);
+  cards.forEach(function(c, i){
+    var dist = Math.abs(i - pos);
+    c.classList.remove("is-centre", "is-near", "is-edge");
+    c.classList.add(dist === 0 ? "is-centre" : dist === 1 ? "is-near" : "is-edge");
+  });
+  card.scrollIntoView({inline: "center", block: "nearest", behavior: reduced ? "auto" : "smooth"});
+}, true);
+
+/* ================= Part 6: try-on layering — FULL / TOP / BOTTOM / EXTRA ================= */
+function kindOf(p){
+  if (!p) return null;
+  var slot = toSlotOf(p);
+  if (slot === "shoes" || slot === "extras") return "EXTRA";
+  if (slot === "frocks") return "FULL";
+  if (toStyleOf(p, "tops") === "romper") return "FULL";
+  if (/full suit/i.test(p.name || "")) return "FULL";
+  if (slot === "bottoms") return "BOTTOM";
+  return "TOP";
+}
+function wornPieces(){
+  var dress = toProd(toWorn.frocks), top = toProd(toWorn.tops), bot = toProd(toWorn.bottoms),
+      shoe = toProd(toWorn.shoes), ex = toProd(toWorn.extras);
+  var out = [], seen = {};
+  function push(p){ if (p && !seen[p.id]) { seen[p.id] = 1; out.push(p); } }
+  if (dress) push(dress);
+  else {
+    push(top);
+    if (!(top && kindOf(top) === "FULL")) push(bot);
+  }
+  push(shoe); push(ex);
+  return out;
+}
+function updateWornLine(){
+  var el = document.getElementById("toWornLine");
+  if (!el) return;
+  var pieces = wornPieces();
+  if (!pieces.length) { el.innerHTML = "On the model now: <b>nothing yet — tap a card!</b>"; return; }
+  var total = pieces.reduce(function(s, p){ return s + p.price; }, 0);
+  el.innerHTML = "On the model now: <b>" + pieces.map(function(p){ return esc(p.name); }).join(" + ") + "</b> · Look total " + fmtPrice(total) + " (demo)";
+}
+(function buildWornLine(){
+  var bar = document.getElementById("toBar");
+  var line = document.createElement("div");
+  line.className = "to-worn-line"; line.id = "toWornLine";
+  bar.parentNode.insertBefore(line, bar.nextSibling);
+})();
+var origRenderModel = renderModel;
+renderModel = function(){
+  origRenderModel();
+  var top = toProd(toWorn.tops);
+  if (top && kindOf(top) === "FULL") document.getElementById("toGBottom").innerHTML = "";
+  updateWornLine();
+};
+var origRenderBar = renderBar;
+renderBar = function(){ origRenderBar(); updateWornLine(); };
+function wearRules(slot, id){
+  var p = toProd(id);
+  var kind = kindOf(p);
+  toWorn[slot] = id;
+  delete toColor[slot];
+  if (kind === "FULL") {
+    if (slot !== "tops") { toWorn.tops = null; delete toColor.tops; }
+    if (slot !== "frocks") { toWorn.frocks = null; delete toColor.frocks; }
+    toWorn.bottoms = null; delete toColor.bottoms;
+  } else if (kind === "TOP" || kind === "BOTTOM") {
+    toWorn.frocks = null; delete toColor.frocks;
+  }
+}
+equipItem = function(slot, id){
+  wearRules(slot, id);
+  renderModel(); renderRails(); renderBar();
+};
+equipBaby = function(p){
+  toWorn.babytoddler = p.id;
+  wearRules(toSlotOf(p), p.id);
+  delete toColor.babytoddler;
+  renderModel(); renderRails(); renderBar();
+};
+renderModel(); renderBar();
+
+/* ================= storefront sections: delivery & payment, reviews, track order ================= */
+(function buildInfoSections(){
+  var visit = document.getElementById("visit");
+  var sec = document.createElement("section");
+  sec.id = "delivery";
+  sec.innerHTML = '<div class="wrap"><div class="sec-head reveal in"><span class="tag" style="background:var(--mint-soft);color:var(--mint-deep)">Good to know</span>' +
+    '<h2>Delivery &amp; <span class="grad-text">payment</span> 🚚</h2><p>Simple, honest charges — the shop owner can change these any time in the Admin Panel.</p></div>' +
+    '<div class="info-cards" id="deliveryCards"></div></div>';
+  visit.parentNode.insertBefore(sec, visit);
+  var rev = document.createElement("section");
+  rev.id = "reviews"; rev.style.background = "var(--bg-soft)";
+  rev.innerHTML = '<div class="wrap"><div class="sec-head reveal in"><span class="tag" style="background:var(--sun-soft);color:var(--sun-deep)">Happy parents</span>' +
+    '<h2>What parents <span class="grad-text">say</span> 💛</h2><p>Sample reviews for this demo — the shop owner can edit or replace them in the Admin Panel.</p></div><div class="rev-grid" id="revGrid"></div></div>';
+  visit.parentNode.insertBefore(rev, visit);
+  var tr = document.createElement("section");
+  tr.id = "track";
+  tr.innerHTML = '<div class="wrap"><div class="sec-head reveal in"><span class="tag" style="background:var(--blue-soft);color:var(--blue-deep)">Track order</span>' +
+    '<h2>Where is my <span class="grad-text">order?</span> 📦</h2><p>Type your Order ID (like #1001) or the mobile number you ordered with.</p></div>' +
+    '<div class="track-box"><div class="track-form"><input id="trackInput" type="text" placeholder="Order ID or mobile number" aria-label="Order ID or mobile number" />' +
+    '<button type="button" class="btn btn-grad" id="trackBtn">🔍 Track</button></div><div id="trackResult"></div></div></div>';
+  visit.parentNode.insertBefore(tr, visit);
+  document.getElementById("trackBtn").addEventListener("click", runTrack);
+  document.getElementById("trackInput").addEventListener("keydown", function(e){ if (e.key === "Enter") runTrack(); });
+})();
+function renderDeliveryInfo(){
+  var d = state.settings.delivery;
+  var box = document.getElementById("deliveryCards");
+  if (!box) return;
+  box.innerHTML =
+    '<div class="info-card2"><h3>🏠 Abbottabad city</h3><p>Delivery charge: <b>' + fmtPrice(d.cityFee) + '</b></p><p>Arrives in ' + esc(d.cityDays) + '.</p></div>' +
+    '<div class="info-card2"><h3>🇵🇰 Nationwide</h3><p>Delivery charge: <b>' + fmtPrice(d.natFee) + '</b></p><p>Arrives in ' + esc(d.natDays) + '.</p></div>' +
+    '<div class="info-card2"><h3>💳 Payment</h3><p>We accept <b>Cash on Delivery</b>, <b>JazzCash</b> and <b>Easypaisa</b>.</p>' +
+    (state.settings.payJazz ? '<p>JazzCash: ' + esc(state.settings.payJazz) + '</p>' : '') +
+    (state.settings.payEasy ? '<p>Easypaisa: ' + esc(state.settings.payEasy) + '</p>' : '') +
+    '<p>Pick your method in the order form at checkout.</p></div>';
+}
+function renderReviews(){
+  var box = document.getElementById("revGrid");
+  if (!box) return;
+  box.innerHTML = "";
+  if (!state.reviews.length) { box.innerHTML = '<p class="empty-note">No reviews yet.</p>'; return; }
+  state.reviews.forEach(function(r){
+    var card = document.createElement("div");
+    card.className = "rev-card";
+    var stars = "";
+    for (var i = 0; i < 5; i++) stars += i < r.stars ? "★" : "☆";
+    card.innerHTML = '<div class="stars-r">' + stars + '</div><p>“' + esc(r.text) + '”</p><b>' + esc(r.name) + '</b>';
+    box.appendChild(card);
+  });
+}
+function runTrack(){
+  var raw = document.getElementById("trackInput").value.trim();
+  var box = document.getElementById("trackResult");
+  if (!raw) { box.innerHTML = '<p class="empty-note">Type your Order ID or mobile number first. 👆</p>'; return; }
+  var digits = raw.replace(/\D/g, "");
+  var matches = state.orders.filter(function(o){
+    return String(o.seq) === digits || o.id === raw || (digits.length >= 10 && o.phone.replace(/\D/g, "") === digits);
+  });
+  if (!matches.length) { box.innerHTML = '<p class="empty-note">No order found with that ID / number. Check the ID on your order confirmation, or ask us on WhatsApp. 💬</p>'; return; }
+  box.innerHTML = "";
+  matches.forEach(function(o){
+    var steps = ["Received", "Confirmed", "Dispatched", "Delivered"];
+    var idx = o.status === "New" ? 0 : o.status === "Confirmed" ? 1 : o.status === "Dispatched" ? 2 : o.status === "Delivered" ? 3 : -1;
+    var html = '<div style="border-top:2px dashed var(--line);margin-top:18px;padding-top:16px"><b style="font-family:\'Baloo 2\',sans-serif;font-size:1.1rem">Order ' + o.id + '</b>' + (o.preorder ? ' <span class="pre-tag">PRE-ORDER</span>' : '') +
+      '<span style="color:var(--ink-soft);font-weight:700"> · ' + new Date(o.date).toLocaleDateString() + ' · ' + fmtPrice(o.total) + '</span>' +
+      '<div style="font-weight:600;color:var(--ink-soft);margin-top:4px">' + o.items.map(function(i){ return esc(i.name) + " × " + i.qty; }).join(", ") + '</div>';
+    if (o.status === "Cancelled") {
+      html += '<p class="err" style="margin-top:12px">❌ This order was cancelled. Message us on WhatsApp if you need help.</p>';
+    } else {
+      html += '<div class="timeline">' + steps.map(function(s, i){
+        return '<div class="tl-step' + (i < idx ? " done" : i === idx ? " done now" : "") + '">' + s + '</div>';
+      }).join("") + '</div>';
+    }
+    html += '</div>';
+    box.innerHTML += html;
+  });
+}
+renderDeliveryInfo();
+renderReviews();
+
+/* ================= admin: Orders tab, Reviews tab, extra settings, product flags ================= */
+function updateOrdersBadge(){
+  var n = state.orders.filter(function(o){ return o.status === "New"; }).length;
+  var badge = document.getElementById("ordersBadge");
+  if (badge) { badge.textContent = n; badge.style.display = n ? "inline-block" : "none"; }
+  var list = document.getElementById("tab-orders");
+  if (list && !document.getElementById("tab-orders").hidden) renderAdminOrders();
+}
+function fmtDate(iso){ var d = new Date(iso); return d.toLocaleDateString() + " · " + d.toLocaleTimeString([], {hour:"2-digit", minute:"2-digit"}); }
+function renderAdminOrders(){
+  var list = document.getElementById("adminOrderList");
+  if (!list) return;
+  list.innerHTML = "";
+  if (!state.orders.length) {
+    list.innerHTML = '<p class="empty-note">No orders yet — orders placed on this shop (in this browser) will appear here.</p>';
+    return;
+  }
+  state.orders.forEach(function(o){
+    var row = document.createElement("div");
+    row.className = "admin-item order-row";
+    var itemsHtml = o.items.map(function(i){ return esc(i.name) + (i.variant ? " (" + esc(i.variant) + ")" : "") + " × " + i.qty; }).join("<br/>");
+    row.innerHTML = '<div class="ai-body"><b>Order ' + o.id + (o.preorder ? ' <span class="pre-tag">PRE-ORDER</span>' : '') + ' — ' + fmtPrice(o.total) + '</b>' +
+      '<span>' + fmtDate(o.date) + ' · ' + esc(o.customer) + ' · ' + esc(o.phone) + '</span><br/>' +
+      '<span>' + itemsHtml + '</span><br/><span>' + esc(o.address) + ' · ' + esc(o.payment) + (o.note ? ' · Note: ' + esc(o.note) : '') + '</span></div>';
+    var sel = document.createElement("select");
+    sel.setAttribute("aria-label", "Order status");
+    sel.style.cssText = "padding:9px 11px;border:2px solid var(--line);border-radius:12px;font-family:'Baloo 2',sans-serif;font-weight:700;background:var(--bg);color:var(--ink)";
+    ["New", "Confirmed", "Dispatched", "Delivered", "Cancelled"].forEach(function(s){
+      var op = document.createElement("option"); op.value = s; op.textContent = s; if (o.status === s) op.selected = true; sel.appendChild(op);
+    });
+    sel.addEventListener("change", function(){ o.status = sel.value; persistNow(); updateOrdersBadge(); });
+    var del = document.createElement("button");
+    del.className = "mini-btn danger"; del.textContent = "🗑️ Delete";
+    del.addEventListener("click", function(){
+      if (del.dataset.confirm === "1") {
+        state.orders = state.orders.filter(function(x){ return x !== o; });
+        persistNow(); renderAdminOrders(); updateOrdersBadge();
+      } else {
+        del.dataset.confirm = "1"; del.textContent = "Sure? Tap again"; del.classList.add("confirm");
+        setTimeout(function(){ del.dataset.confirm = ""; del.textContent = "🗑️ Delete"; del.classList.remove("confirm"); }, 3000);
+      }
+    });
+    row.appendChild(sel); row.appendChild(del);
+    list.appendChild(row);
+  });
+}
+function renderAdminReviews(){
+  var list = document.getElementById("adminReviewList");
+  if (!list) return;
+  list.innerHTML = "";
+  state.reviews.forEach(function(r, idx){
+    var row = document.createElement("div");
+    row.className = "admin-item offer-item";
+    var stars = "";
+    for (var i = 0; i < 5; i++) stars += i < r.stars ? "★" : "☆";
+    row.innerHTML = '<div class="ai-body"><b>' + esc(r.name) + ' — ' + stars + '</b><span>' + esc(r.text) + '</span></div>';
+    var editBtn = document.createElement("button");
+    editBtn.className = "mini-btn"; editBtn.textContent = "✏️ Edit";
+    editBtn.addEventListener("click", function(){
+      document.getElementById("rIdx").value = idx;
+      document.getElementById("rName").value = r.name;
+      document.getElementById("rStars").value = r.stars;
+      document.getElementById("rText").value = r.text;
+      document.getElementById("reviewSaveBtn").textContent = "💾 Save changes";
+    });
+    var delBtn = document.createElement("button");
+    delBtn.className = "mini-btn danger"; delBtn.textContent = "🗑️ Delete";
+    delBtn.addEventListener("click", function(){
+      if (delBtn.dataset.confirm === "1") {
+        state.reviews.splice(idx, 1);
+        persistNow(); renderReviews(); renderAdminReviews();
+      } else {
+        delBtn.dataset.confirm = "1"; delBtn.textContent = "Sure? Tap again"; delBtn.classList.add("confirm");
+        setTimeout(function(){ delBtn.dataset.confirm = ""; delBtn.textContent = "🗑️ Delete"; delBtn.classList.remove("confirm"); }, 3000);
+      }
+    });
+    row.appendChild(editBtn); row.appendChild(delBtn);
+    list.appendChild(row);
+  });
+}
+(function buildAdminExtras(){
+  var tabs = document.querySelector(".tabs");
+  var ordersBtn = document.createElement("button");
+  ordersBtn.setAttribute("data-tab", "orders");
+  ordersBtn.innerHTML = '📦 Orders <span class="tab-badge" id="ordersBadge" style="display:none">0</span>';
+  tabs.appendChild(ordersBtn);
+  var revBtn = document.createElement("button");
+  revBtn.setAttribute("data-tab", "reviews");
+  revBtn.textContent = "⭐ Reviews";
+  tabs.appendChild(revBtn);
+  var dash = document.getElementById("adminDash");
+  var ordersPanel = document.createElement("div");
+  ordersPanel.className = "panel-card"; ordersPanel.id = "tab-orders"; ordersPanel.hidden = true;
+  ordersPanel.innerHTML = '<h3>📦 Orders</h3><p class="sub">Newest first. Change a status and the customer\'s tracking updates too.</p>' +
+    '<p class="sub" style="background:var(--sun-soft);border-radius:12px;padding:10px 13px">Demo note: Orders shown here are the ones placed in this browser — real orders also reach the owner on WhatsApp, so no order is ever lost.</p>' +
+    '<div class="admin-list" id="adminOrderList"></div>';
+  dash.appendChild(ordersPanel);
+  var revPanel = document.createElement("div");
+  revPanel.className = "panel-card"; revPanel.id = "tab-reviews"; revPanel.hidden = true;
+  revPanel.innerHTML = '<h3>⭐ Customer reviews</h3><p class="sub">Reviews shown on the shop — add, edit or delete them here.</p>' +
+    '<input type="hidden" id="rIdx" value="" />' +
+    '<div class="form-grid"><div class="field"><label for="rName">Name</label><input id="rName" type="text" placeholder="e.g. Fatima S." /></div>' +
+    '<div class="field"><label for="rStars">Stars</label><select id="rStars"><option value="5">★★★★★ (5)</option><option value="4">★★★★ (4)</option><option value="3">★★★ (3)</option><option value="2">★★ (2)</option><option value="1">★ (1)</option></select></div>' +
+    '<div class="field full"><label for="rText">Review text</label><textarea id="rText" rows="2" placeholder="What did the parent say?"></textarea></div></div>' +
+    '<div class="form-actions"><button type="button" class="btn btn-grad" id="reviewSaveBtn">💾 Save review</button></div>' +
+    '<p class="okmsg" id="reviewMsg" hidden></p><div class="admin-list" id="adminReviewList"></div>';
+  dash.appendChild(revPanel);
+  revPanel.querySelector("#reviewSaveBtn").addEventListener("click", function(){
+    var name = document.getElementById("rName").value.trim();
+    var text = document.getElementById("rText").value.trim();
+    if (!name || !text) { flashMsg("reviewMsg", "⚠️ Add a name and the review text first."); return; }
+    var stars = parseInt(document.getElementById("rStars").value, 10) || 5;
+    var idxRaw = document.getElementById("rIdx").value;
+    if (idxRaw !== "" && state.reviews[+idxRaw]) { state.reviews[+idxRaw] = {name:name, stars:stars, text:text}; }
+    else state.reviews.push({name:name, stars:stars, text:text});
+    document.getElementById("rIdx").value = "";
+    document.getElementById("rName").value = ""; document.getElementById("rText").value = "";
+    document.getElementById("reviewSaveBtn").textContent = "💾 Save review";
+    persistNow(); renderReviews(); renderAdminReviews();
+    flashMsg("reviewMsg", "✅ Review saved — it is live on the shop.");
+  });
+  function myTabShow(which){
+    ["tab-orders", "tab-reviews"].forEach(function(id){ document.getElementById(id).hidden = id !== "tab-" + which; });
+    if (which === "orders") renderAdminOrders();
+    if (which === "reviews") renderAdminReviews();
+  }
+  [ordersBtn, revBtn].forEach(function(btn){
+    btn.addEventListener("click", function(){
+      document.querySelectorAll(".tabs button").forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      ["products", "offers", "settings"].forEach(function(t){ document.getElementById("tab-" + t).hidden = true; });
+      myTabShow(btn.getAttribute("data-tab"));
+    });
+  });
+  document.querySelectorAll(".tabs button").forEach(function(btn){
+    if (btn === ordersBtn || btn === revBtn) return;
+    btn.addEventListener("click", function(){ myTabShow("__none__"); });
+  });
+  /* extra settings fields: delivery + payment accounts */
+  var grid = document.querySelector("#tab-settings .form-grid");
+  var extra = document.createElement("div");
+  extra.className = "form-grid"; extra.style.gridColumn = "1/-1";
+  extra.innerHTML =
+    '<div class="field"><label for="sDelCityFee">Delivery — Abbottabad fee (Rs)</label><input id="sDelCityFee" type="number" min="0" /></div>' +
+    '<div class="field"><label for="sDelCityDays">Delivery — Abbottabad time</label><input id="sDelCityDays" type="text" /></div>' +
+    '<div class="field"><label for="sDelNatFee">Delivery — Nationwide fee (Rs)</label><input id="sDelNatFee" type="number" min="0" /></div>' +
+    '<div class="field"><label for="sDelNatDays">Delivery — Nationwide time</label><input id="sDelNatDays" type="text" /></div>' +
+    '<div class="field"><label for="sPayJazz">JazzCash account (optional — shown at checkout only if filled)</label><input id="sPayJazz" type="text" placeholder="Leave empty to hide" /></div>' +
+    '<div class="field"><label for="sPayEasy">Easypaisa account (optional — shown at checkout only if filled)</label><input id="sPayEasy" type="text" placeholder="Leave empty to hide" /></div>';
+  grid.appendChild(extra);
+  document.getElementById("settingsSaveBtn").addEventListener("click", function(){
+    state.settings.delivery.cityFee = parseInt(document.getElementById("sDelCityFee").value, 10) || 0;
+    state.settings.delivery.cityDays = document.getElementById("sDelCityDays").value.trim() || "1–2 days";
+    state.settings.delivery.natFee = parseInt(document.getElementById("sDelNatFee").value, 10) || 0;
+    state.settings.delivery.natDays = document.getElementById("sDelNatDays").value.trim() || "3–5 days";
+    state.settings.payJazz = document.getElementById("sPayJazz").value.trim();
+    state.settings.payEasy = document.getElementById("sPayEasy").value.trim();
+    persistNow(); renderDeliveryInfo();
+  });
+  document.getElementById("pinBtn").addEventListener("click", function(){
+    if (!loggedIn) return;
+    document.getElementById("sDelCityFee").value = state.settings.delivery.cityFee;
+    document.getElementById("sDelCityDays").value = state.settings.delivery.cityDays;
+    document.getElementById("sDelNatFee").value = state.settings.delivery.natFee;
+    document.getElementById("sDelNatDays").value = state.settings.delivery.natDays;
+    document.getElementById("sPayJazz").value = state.settings.payJazz || "";
+    document.getElementById("sPayEasy").value = state.settings.payEasy || "";
+    renderAdminOrders(); renderAdminReviews(); updateOrdersBadge();
+  });
+})();
+/* product flags: Pre-Order + Sold Out toggles in the admin product list */
+var origRenderAdminProducts = renderAdminProducts;
+renderAdminProducts = function(){
+  origRenderAdminProducts();
+  var list = document.getElementById("adminProdList");
+  var rows = list.children;
+  state.products.forEach(function(p, i){
+    var row = rows[i];
+    if (!row || !row.querySelector(".ai-body")) return;
+    var flags = document.createElement("div");
+    flags.className = "flag-row";
+    var preBtn = document.createElement("button");
+    preBtn.type = "button";
+    preBtn.className = "flag-btn" + (p.preorder ? " on-pre" : "");
+    preBtn.textContent = p.preorder ? "⏳ Pre-Order: ON" : "⏳ Pre-Order";
+    preBtn.addEventListener("click", function(){
+      p.preorder = !p.preorder;
+      persistNow(); renderProducts(); renderAdminProducts();
+    });
+    flags.appendChild(preBtn);
+    if (p.preorder) {
+      var note = document.createElement("input");
+      note.className = "flag-note"; note.type = "text";
+      note.placeholder = "Expected note, e.g. Expected: 10 days";
+      note.value = p.preNote || "";
+      note.setAttribute("aria-label", "Expected availability note for " + p.name);
+      note.addEventListener("change", function(){ p.preNote = note.value.trim(); persistNow(); renderProducts(); });
+      flags.appendChild(note);
+    }
+    var outBtn = document.createElement("button");
+    outBtn.type = "button";
+    outBtn.className = "flag-btn" + (p.soldout ? " on-out" : "");
+    outBtn.textContent = p.soldout ? "🚫 Sold Out: ON" : "🚫 Sold Out";
+    outBtn.addEventListener("click", function(){
+      p.soldout = !p.soldout;
+      persistNow(); renderProducts(); renderAdminProducts();
+    });
+    flags.appendChild(outBtn);
+    row.querySelector(".ai-body").appendChild(flags);
+  });
+};
+updateOrdersBadge();
 </script>
 </body>
 </html>
